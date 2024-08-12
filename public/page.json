@@ -1,0 +1,20 @@
+[
+    {
+        "link":{"text":"Home","url":"index.html"},
+        "pageTitle":"Hello Vue",
+        "content": "This is home content",
+        "published": true
+    },
+    {
+        "link":{"text":"About","url":"about.html"},
+        "pageTitle":"Hello Vue",
+        "content": "This is about content",
+        "published": true
+    },
+    {
+        "link":{"text":"Contact","url":"contact.html"},
+        "pageTitle":"Hello Vue",
+        "content": "This is contact content",
+        "published": true
+    }
+]

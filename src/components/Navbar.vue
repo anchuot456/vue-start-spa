@@ -1,0 +1,68 @@
+<template>
+    <nav 
+                class="navbar navbar-expand-lg"
+                :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']"
+            >
+                <dev class="container-fluid">
+                    <a href="#" class="navbar-brand">My Vue</a>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <navbar-link
+                            v-for="(page,index) in publishedPages" class="nav-item" :key="index"
+                            :page = "page"
+                            :index="index"
+                            :isActive = "activePage === index"
+                            @actived = "$emit('actived')"
+                        ></navbar-link>
+                    </ul>
+                    <form class="d-flex">
+                        <button 
+                            class="btn btn-primary"
+                            @click.prevent="ChangeTheme()"
+                        >Toggle Navbar</button>
+                    </form>
+                </dev>
+            </nav>
+</template>
+
+<script>
+import NavbarLink from './NavbarLink.vue';
+export default {
+  components: { NavbarLink },
+    props:['pages','activePage'],
+    data(){
+        return{
+            theme:'dark',
+        };
+    },
+    created() {
+        this.GetThemeSetting();
+    },
+    computed:{
+        publishedPages(){
+            return this.pages.filter(p=>p.published)
+        }
+    },
+    methods: {
+        ChangeTheme(){
+            let theme = 'light';
+
+            if(this.theme == 'light'){
+                theme='dark';
+            }
+
+            this.theme = theme;
+            this.StoreThemeSetting();
+        },
+        StoreThemeSetting(){
+            localStorage.setItem('theme',this.theme);
+        },
+        GetThemeSetting(){
+            let theme = localStorage.getItem('theme');
+
+            if(theme){
+                this.theme = theme;
+            }
+        }
+    },
+}
+</script>
