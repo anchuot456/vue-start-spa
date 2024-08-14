@@ -13,14 +13,10 @@
 </template>
 
 <script>
-import CreatePage from './components/CreatePage.vue';
 import Navbar from './components/Navbar.vue';
-import PageViewer from "./components/PageViewer.vue"
 
 export default {
     components:{
-        PageViewer,
-        CreatePage,
         Navbar,
     },
     methods: {
