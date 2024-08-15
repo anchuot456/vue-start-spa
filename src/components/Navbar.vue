@@ -12,14 +12,6 @@
                             :index="index"
                             @actived = "$emit('actived')"
                         ></navbar-link>
-                        <li>
-                            <router-link 
-                                to="/create"
-                                class="nav-link"
-                                active-class="active"
-                                aria-current="page"
-                            >Create Page</router-link>
-                        </li>
                     </ul>
                     <form class="d-flex">
                         <button 
@@ -41,10 +33,15 @@ export default {
             pages:[]
         };
     },
+    inject:['$pages','$bus'],
     created() {
         this.GetThemeSetting();
 
         this.pages = this.$pages.getAllPages();
+
+        this.$bus.$on('page-updated',()=>{
+            this.pages = [...this.$pages.getAllPages()];
+        })
     },
     computed:{
         publishedPages(){

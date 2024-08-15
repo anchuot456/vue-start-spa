@@ -14,6 +14,7 @@ export default {
         //     this.page = this.$pages.getSinglePage(newParams.index);
         // })
     },
+    inject:['$pages'],
     data(){
         return{
             page:null
