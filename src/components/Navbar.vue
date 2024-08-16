@@ -12,6 +12,13 @@
                             :index="index"
                             @actived = "$emit('actived')"
                         ></navbar-link>
+                        <li>
+                            <router-link 
+                            to="/pages"
+                            class="nav-link" >
+                                Pages
+                            </router-link>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <button 
@@ -40,6 +47,12 @@ export default {
         this.pages = this.$pages.getAllPages();
 
         this.$bus.$on('page-updated',()=>{
+            this.pages = [...this.$pages.getAllPages()];
+        });
+        this.$bus.$on('page-created',()=>{
+            this.pages = [...this.$pages.getAllPages()];
+        });
+        this.$bus.$on('page-deleted',()=>{
             this.pages = [...this.$pages.getAllPages()];
         })
     },
